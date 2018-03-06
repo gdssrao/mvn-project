@@ -16,11 +16,11 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 	</spring:beans>
 	<db:derby-config name="Derby_Configuration" doc:name="Derby Configuration" url="jdbc:derby:memory:muleEmbeddedDB;create=true" />
 	<jms:activemq-connector name="Active_MQ" brokerURL="vm://localhost" validateConnections="true" doc:name="Active MQ" />
-	<flow name="mvn-flow">
+	<flow name="mavenFlow">
 		<http:listener config-ref="HTTP_Listener_Configuration" path="/test" doc:name="HTTP" />
 		<set-payload value="Hello Maven" doc:name="Set Payload" />
 	</flow>
-	<flow name="retriveFlights">
+	<flow name="retrieveFlights">
 		<http:listener config-ref="HTTP_Listener_Configuration" path="/flights" doc:name="HTTP" />
 		<db:select config-ref="Derby_Configuration" doc:name="Database">
 			<db:dynamic-query><![CDATA[SELECT * FROM Flights]]></db:dynamic-query>
