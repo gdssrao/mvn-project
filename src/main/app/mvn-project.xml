@@ -25,6 +25,9 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 		<db:select config-ref="Derby_Configuration" doc:name="Database">
 			<db:dynamic-query><![CDATA[SELECT * FROM Flights]]></db:dynamic-query>
 		</db:select>
+        <message-properties-transformer doc:name="Message Properties">
+    <add-message-property key="Content-Type" value="application/json" />
+  </message-properties-transformer>
 		<json:object-to-json-transformer doc:name="Object to JSON" />
 		<jms:outbound-endpoint queue="flights" connector-ref="Active_MQ" doc:name="JMS" />
 	</flow>
